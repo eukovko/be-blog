@@ -5,8 +5,11 @@
 > https://ehmoc5kry7.execute-api.eu-west-1.amazonaws.com/dev/courses
 > 
 > https://ehmoc5kry7.execute-api.eu-west-1.amazonaws.com/dev/courses/{id}
+>
+✅  +1 - Async/await is used in lambda functions \
+> Added a function invocation which is invoked asynchronously during courses/ endpoint handler execution. 
+> This function is just a mock with 1 second timeout. 
 > 
-⛔ +1 - Async/await is used in lambda functions \
 ✅ +1 - ES6 modules are used for Product Service implementation \
 ⛔ +1 - Custom Webpack/ESBuild/etc is manually configured for Product Service. Not applicable for preconfigured/built-in bundlers that come with templates, plugins, etc. \
 ⛔ +1 (All languages) - SWAGGER documentation is created for Product Service \
