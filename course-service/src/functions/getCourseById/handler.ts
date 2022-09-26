@@ -13,7 +13,7 @@ export const main = middyfy(getAllCourses);
 
 function getResult(event: APIGatewayProxyEventBase<APIGatewayEventDefaultAuthorizerContext>) {
   const repository = new CourseRepository()
-  const {idParam} = event.pathParameters
-  const id = parseInt(idParam)
-  return repository.getCourseById(id);
+  let {id} = event.pathParameters
+  const idNum = parseInt(id)
+  return repository.getCourseById(idNum);
 }
