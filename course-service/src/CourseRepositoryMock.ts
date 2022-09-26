@@ -1,4 +1,5 @@
 import Course from "./Course";
+import ApiError from "./ApiError";
 
 export default class CourseRepository {
 
@@ -12,7 +13,11 @@ export default class CourseRepository {
     ]
 
     getCourseById(id: number) {
-        return CourseRepository.courses[id];
+        if (id < 0 || id >= CourseRepository.courses.length) {
+            throw new ApiError("Course not found", 404)
+        } else {
+            return CourseRepository.courses[id];
+        }
     }
     getAllCourses() {
         return CourseRepository.courses

@@ -15,4 +15,5 @@
 ⛔ +1 (All languages) - SWAGGER documentation is created for Product Service \
 ⛔ +1 (All languages) - Lambda handlers are covered by basic UNIT tests (NO infrastructure logic is needed to be covered) \
 ✅ +1 (All languages) - Lambda handlers (getProductsList, getProductsById) code is written not in 1 single module (file) and separated in codebase. \
-⛔ +1 (All languages) - Main error scenarios are handled by API ("Product not found" error). \
+✅ +1 (All languages) - Main error scenarios are handled by API ("Product not found" error). \
+> Handling of a simple scenario when a course with a particular ID doesn't exist

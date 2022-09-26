@@ -3,9 +3,16 @@ import {middyfy} from '@libs/lambda';
 import {APIGatewayEventDefaultAuthorizerContext, APIGatewayProxyEvent, APIGatewayProxyEventBase} from "aws-lambda";
 
 import CourseRepository from "../../CourseRepositoryMock";
+import ApiError from "../../ApiError";
 
 const getAllCourses = async (event: APIGatewayProxyEvent) => {
-  const course = getResult(event);
+  let course
+  try {
+    course = getResult(event);
+  } catch (e) {
+    let error = (<ApiError>e)
+    return formatJSONResponse({error}, error.code);
+  }
   return formatJSONResponse({course});
 };
 
