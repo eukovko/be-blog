@@ -2,6 +2,7 @@ import type {AWS} from '@serverless/typescript';
 
 import getAllCourses from '@functions/getAllCourses';
 import getCourseById from '@functions/getCourseById';
+import createCourse from "@functions/createCourse";
 
 const serverlessConfiguration: AWS = {
     service: 'course-service',
@@ -42,7 +43,7 @@ const serverlessConfiguration: AWS = {
         },
     },
     // import the function via paths
-    functions: {getAllCourses, getCourseById},
+    functions: {getAllCourses, getCourseById, createCourse},
     package: {individually: true},
     custom: {
         esbuild: {

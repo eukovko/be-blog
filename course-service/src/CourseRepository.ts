@@ -1,4 +1,5 @@
 import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import Course from "./Course";
 
 const AWS = require("aws-sdk");
 const dynamo: DocumentClient  = new AWS.DynamoDB.DocumentClient();
@@ -14,6 +15,15 @@ async function courseById(id: number) {
     }
     return await dynamo.get(courseParams).promise()
         .then(data => data.Item);
+}
+
+async function createCourse(course: Course) {
+    const courseParams = {
+        TableName: courseTable,
+        Item: course
+    }
+    let result = await dynamo.put(courseParams).promise()
+    console.log(result)
 }
 
 async function capacityById(id: number) {
@@ -36,4 +46,4 @@ async function allCapacity() {
         .then(data => data.Items)
 }
 
-export {courseById, capacityById, allCourses, allCapacity}
+export {courseById, capacityById, allCourses, allCapacity, createCourse}

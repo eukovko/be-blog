@@ -11,7 +11,7 @@ const getAllCourses = async () => {
   for (let i = 0; i < length; i++) {
     let courseData = coursesData[i];
     let capacity = capacities[i]
-    const course = new Course(courseData.title, courseData.description, courseData.price, capacity.places_left)
+    const course = new Course(courseData.id, courseData.title, courseData.description, courseData.price, capacity.places_left)
     courses.push(course)
   }
   return formatJSONResponse({courses});
