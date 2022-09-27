@@ -10,7 +10,7 @@
 >> - product_id - uuid (Foreign key from products.id)
 >> - count - integer (Total number of products in stock, can't be exceeded)
 - Write a script to fill tables with test examples. Store it in your Github repository. Execute it for your DB to fill data.
-- Extend your serverless.yml file with data about your database table and pass it to lambda’s environment variables section.
+- ✅Extend your serverless.yml file with data about your database table and pass it to lambda’s environment variables section.
 - Integrate the getProductsList lambda to return via GET /products request a list of products from the database (joined stocks and products tables).
 - Implement a Product model on FE side as a joined model of product and stock by productId. For example:
 - Integrate the getProductsById lambda to return via GET /products/{productId} request a single product from the database. Do not commit your environment variables in serverless.yml to github!

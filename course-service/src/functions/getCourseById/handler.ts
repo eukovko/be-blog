@@ -5,12 +5,13 @@ import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
 
 const AWS = require("aws-sdk");
 const dynamo: DocumentClient  = new AWS.DynamoDB.DocumentClient();
+const tableName = process.env.TABLE_NAME
 
 const getAllCourses = async (event) => {
   let {id} = event.pathParameters
   const idNum = parseInt(id)
   const params = {
-    TableName: "courses",
+    TableName: tableName,
     Key: {
       id: idNum}
   }
