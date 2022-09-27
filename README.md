@@ -1,4 +1,4 @@
-- Use AWS Console to create two database tables in DynamoDB. Expected schemas for products and stocks:
+- ✅ Use AWS Console to create two database tables in DynamoDB. Expected schemas for products and stocks:
 >> Product model:
 >>
 >> - id -  uuid (Primary key)
