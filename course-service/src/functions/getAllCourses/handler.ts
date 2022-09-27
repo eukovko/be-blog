@@ -3,7 +3,7 @@ import {middyfy} from '@libs/lambda';
 
 const AWS = require("aws-sdk");
 const dynamo = new AWS.DynamoDB.DocumentClient();
-const tableName = process.env.TABLE_NAME
+const tableName = process.env.COURSE_TABLE_NAME
 
 async function getResult() {
   return await dynamo.scan({TableName: tableName}).promise()

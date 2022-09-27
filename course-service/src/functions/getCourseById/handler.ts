@@ -1,25 +1,20 @@
 import {formatJSONResponse} from '@libs/api-gateway';
 import {middyfy} from '@libs/lambda';
 
-import {DocumentClient} from "aws-sdk/lib/dynamodb/document_client";
+import Course from "../../Course";
+import {capacityById, courseById} from "../../CourseRepository";
 
-const AWS = require("aws-sdk");
-const dynamo: DocumentClient  = new AWS.DynamoDB.DocumentClient();
-const tableName = process.env.TABLE_NAME
 
-const getAllCourses = async (event) => {
-  let {id} = event.pathParameters
-  const idNum = parseInt(id)
-  const params = {
-    TableName: tableName,
-    Key: {
-      id: idNum}
-  }
-  let course  = await dynamo.get(params).promise()
-      .then(data => data.Item);
-  console.log(course);
+const getCourseById = async (event) => {
+  const {id} = event.pathParameters
+  const numericId = parseInt(id)
+  const courseData = await courseById(numericId);
+  const capacity = await capacityById(numericId)
+  const course = new Course(courseData.title, courseData.desciption, courseData.price, capacity.places_left)
+  console.log(courseData);
+  console.log(capacity)
   return formatJSONResponse({course});
 };
 
-export const main = middyfy(getAllCourses);
+export const main = middyfy(getCourseById);
 
