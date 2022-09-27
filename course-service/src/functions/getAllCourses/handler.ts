@@ -1,17 +1,15 @@
 import {formatJSONResponse} from '@libs/api-gateway';
 import {middyfy} from '@libs/lambda';
 
-import CourseRepository from "../../CourseRepositoryMock";
-import AsyncWorker from "../../AsyncWorker";
+const AWS = require("aws-sdk");
+const dynamo = new AWS.DynamoDB.DocumentClient();
 
-function getResult() {
-  AsyncWorker.doWork()
-  const repository = new CourseRepository()
-  return repository.getAllCourses();
+async function getResult() {
+  return await dynamo.scan({TableName: "courses"}).promise()
 }
 
 const getAllCourses = async () => {
-  const courses = getResult();
+  const courses = await getResult();
   return formatJSONResponse({courses});
 };
 
