@@ -33,7 +33,7 @@ const serverlessConfiguration: AWS = {
                             "dynamodb:UpdateItem",
                             "dynamodb:DeleteItem",
                         ],
-                        Resource: "arn:aws:dynamodb:eu-west-1:400502372718:table/courses",
+                        Resource: "arn:aws:dynamodb:eu-west-1:400502372718:table/*",
                     },
                 ]
             }
@@ -62,11 +62,9 @@ const serverlessConfiguration: AWS = {
                     TableName: "courses",
                     AttributeDefinitions: [
                         {AttributeName: "id", AttributeType: "N"},
-                        {AttributeName: "title", AttributeType: "S"}
                     ],
                     KeySchema: [
                         {AttributeName: "id", KeyType: "HASH"},
-                        {AttributeName: "title", KeyType: "RANGE"}
                     ],
                     ProvisionedThroughput: {
                         ReadCapacityUnits: 1,
