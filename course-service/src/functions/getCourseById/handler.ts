@@ -10,7 +10,7 @@ const getCourseById = async (event) => {
   const numericId = parseInt(id)
   const courseData = await courseById(numericId);
   const capacity = await capacityById(numericId)
-  const course = new Course(courseData.title, courseData.desciption, courseData.price, capacity.places_left)
+  const course = new Course(courseData.title, courseData.description, courseData.price, capacity.places_left)
   console.log(courseData);
   console.log(capacity)
   return formatJSONResponse({course});

@@ -27,4 +27,13 @@ async function capacityById(id: number) {
         .then(data => data.Item);
 }
 
-export {courseById, capacityById}
+async function allCourses() {
+    return await dynamo.scan({TableName: courseTable}).promise()
+        .then(data => data.Items)
+}
+async function allCapacity() {
+    return await dynamo.scan({TableName: capacityTable}).promise()
+        .then(data => data.Items)
+}
+
+export {courseById, capacityById, allCourses, allCapacity}

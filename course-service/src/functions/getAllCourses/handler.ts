@@ -1,16 +1,19 @@
 import {formatJSONResponse} from '@libs/api-gateway';
 import {middyfy} from '@libs/lambda';
-
-const AWS = require("aws-sdk");
-const dynamo = new AWS.DynamoDB.DocumentClient();
-const tableName = process.env.COURSE_TABLE_NAME
-
-async function getResult() {
-  return await dynamo.scan({TableName: tableName}).promise()
-}
+import {allCapacity, allCourses} from "../../CourseRepository";
+import Course from "../../Course";
 
 const getAllCourses = async () => {
-  const courses = await getResult();
+  const coursesData = await allCourses();
+  const capacities = await allCapacity();
+  const courses = []
+  let length = coursesData.length;
+  for (let i = 0; i < length; i++) {
+    let courseData = coursesData[i];
+    let capacity = capacities[i]
+    const course = new Course(courseData.title, courseData.description, courseData.price, capacity.places_left)
+    courses.push(course)
+  }
   return formatJSONResponse({courses});
 };
 
