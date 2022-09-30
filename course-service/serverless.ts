@@ -3,6 +3,7 @@ import type {AWS} from '@serverless/typescript';
 import getAllCourses from '@functions/getAllCourses';
 import getCourseById from '@functions/getCourseById';
 import createCourse from "@functions/createCourse";
+import createAllCourses from "@functions/createAllCourses";
 
 const serverlessConfiguration: AWS = {
     service: 'course-service',
@@ -28,6 +29,7 @@ const serverlessConfiguration: AWS = {
                     {
                         Effect: "Allow",
                         Action: [
+                            "dynamodb:BatchWriteItem",
                             "dynamodb:DescribeTable",
                             "dynamodb:Query",
                             "dynamodb:Scan",
@@ -43,7 +45,7 @@ const serverlessConfiguration: AWS = {
         },
     },
     // import the function via paths
-    functions: {getAllCourses, getCourseById, createCourse},
+    functions: {getAllCourses, getCourseById, createCourse, createAllCourses},
     package: {individually: true},
     custom: {
         esbuild: {

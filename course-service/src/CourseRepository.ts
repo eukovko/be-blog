@@ -17,6 +17,27 @@ async function courseById(id: number) {
         .then(data => data.Item);
 }
 
+async function createAllCourses(courses: Course[]) {
+
+    let items = []
+    for (let i = 0; i < courses.length; i++) {
+        let item = {
+            PutRequest: {
+                Item: courses[i]
+            }
+        }
+        items.push(item)
+    }
+
+    const courseParams = {
+        RequestItems: {
+            courseTable: items
+        }
+    }
+    let result = await dynamo.batchWrite(courseParams).promise()
+    console.log(result)
+}
+
 async function createCourse(course: Course) {
     const courseParams = {
         TableName: courseTable,
@@ -46,4 +67,4 @@ async function allCapacity() {
         .then(data => data.Items)
 }
 
-export {courseById, capacityById, allCourses, allCapacity, createCourse}
+export {courseById, capacityById, allCourses, allCapacity, createCourse, createAllCourses}
